@@ -60,14 +60,6 @@ def update(bird):
 	bird.velocity += bird.gravity
 	bird.y += bird.velocity
 
-	for pipe in pipes:
-		pipe.x -= 2
-
-	if pipes[0].x < -pipe_img.get_width():
-		pipes.pop(0)
-		score.score += 1
-		pipes.append(Pipe(WINDOW_WIDTH))
-
 	if bird.y > WINDOW_HEIGHT or bird.y < 0:
 		return True
  
@@ -128,7 +120,7 @@ def main(genomes, config):
 				bird.velocity = -10
 			if update(bird):
 				# sys.exit()
-				ge[x].fitness -= .5
+				ge[x].fitness -= .1
 				birds.pop(x)
 				nets.pop(x)
 				ge.pop(x)
@@ -138,8 +130,15 @@ def main(genomes, config):
 			handle_events(bird)
 			window.fill((0, 0, 0))
 			draw(birds)
-		display_score()
 	
+		for pipe in pipes:
+			pipe.x -= (score.score / 10) + 1 if score.score > 10 else 2
+
+		if pipes[0].x < -pipe_img.get_width():
+			pipes.pop(0)
+			score.score += 1
+			pipes.append(Pipe(WINDOW_WIDTH))
+		display_score()
 		pygame.display.update()
 
 
