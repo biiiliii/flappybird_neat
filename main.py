@@ -14,7 +14,7 @@ bg_img = pygame.image.load('bg_large.png')
 pygame.init()
 WINDOW_WIDTH = bg_img.get_width()
 WINDOW_HEIGHT = bg_img.get_height()
-FPS = 60
+FPS = 1200
 window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
 clock = pygame.time.Clock()
 
@@ -88,7 +88,12 @@ def main(genomes, config):
 	global birds, pipes, score
 
 	birds = []
-	pipes = [Pipe(WINDOW_WIDTH), Pipe(WINDOW_WIDTH + ((WINDOW_WIDTH + pipe_img.get_width()) / 4)), Pipe(WINDOW_WIDTH + ((WINDOW_WIDTH + pipe_img.get_width()) / 4) * 2), Pipe(WINDOW_WIDTH + ((WINDOW_WIDTH + pipe_img.get_width()) / 4) * 3 )]
+	pipes = [
+    Pipe(WINDOW_WIDTH), 
+    Pipe(WINDOW_WIDTH + ((WINDOW_WIDTH + pipe_img.get_width()) / 3)), 
+    Pipe(WINDOW_WIDTH + ((WINDOW_WIDTH + pipe_img.get_width()) / 3) * 2), 
+    Pipe(WINDOW_WIDTH + ((WINDOW_WIDTH + pipe_img.get_width()) / 3) * 3)
+]
 	score = Score()
 	nets = []
 	ge = []
@@ -137,7 +142,7 @@ def main(genomes, config):
 		if pipes[0].x < -pipe_img.get_width():
 			pipes.pop(0)
 			score.score += 1
-			pipes.append(Pipe(WINDOW_WIDTH))
+			pipes.append(Pipe(WINDOW_WIDTH + 300))
 		display_score()
 		pygame.display.update()
 
