@@ -12,7 +12,7 @@ This project implements a Flappy Bird AI using the NEAT (Neuroevolution of Augme
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/biiiliii/pacman_neat.git
+git clone https://github.com/biiiliii/flappybird_neat.git
 ```
 2. Install the required packages:
 ```bash
